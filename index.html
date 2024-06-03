@@ -4,7 +4,7 @@
 <head>
     <title>100 Tage M2 iCal Tool</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="robots" content="index, nofollow"/>
+    <!-- <meta name="robots" content="index, nofollow"/> -->
     <link rel="icon" href="favicon.ico">
     <meta name="description" content="Einfach deinen 100 Tage Lernplan erstellen und ihn dir in deinen Kalender eintragen lassen. Du kannst ihn auch regelmäßig bearbeiten und die Update-Funktion nutzen, um ihn aktuell zu halten.">
     <meta name="keywords" content="Staatsexamen, Medizin, M2, Examen, 100 Tage, 100, Tage, Planer, Lernplaner, Lernplan, Generator, Rechner, Lerntage, Stex, Ärztliche Prüfung, 2. Abschnitt, iCal, Tool, ics, iCalendar, Calendar">
@@ -28,11 +28,17 @@
     <h2>100 Tage Lernplan iCal Generator</h2>
     <p>An welchem Examen möchtest du teilnehmen?</p>
     <select class="form-control" style="width:297px;" onchange="change(this)" id="examen">
+
+        <!-- Hier gilt es dann die Examina einzutragen, wenn sie auf der IMPP Webseite verfügbar sind.
+            Der erste Prüfungstag ist im Format YYYY-MM-DD zu hinterlegen.
+        Siehe hier: https://www.impp.de/pruefungen/medizin/prüfungstermine.html -->
         <option value="2024-10-08">- auswählen -</option>
-        <option value="2024-04-09">Frühjahr 2024</option>
         <option value="2024-10-08">Herbst 2024</option>
         <option value="2025-04-08">Frühjahr 2025</option>
-        <option value="2024-10-08">Herbst 2025</option>
+        <option value="2025-10-08">Herbst 2025</option>
+        <option value="2026-04-14">Frühjahr 2026</option>
+        <option value="2026-10-06">Herbst 2026</option>
+        <!-- Ende der Prüfungstermine -->
       </select>
       <p></p>
       <p><span id="numExamen" style="color:#3C3C3C; font-style:italic;"> </span></p>
@@ -60,7 +66,8 @@
     <span id="numSelected"> </span>
     <div style="float: left; padding-top: 20px;">
         <span id="numSelected"> </span>
-    <form action="ics.php" method="post" id="form1">
+    <form action="https://wn0.de/100tage/ics.php" method="post" id="form1">
+        <!-- ics.php ist im Repository included, muss aber an dieser Stelle auf ein extern gehostetes Skript verweisen, da Github Pages kein PHP unterstützt. -->
         <p style="margin-right:10px;">Dein "Lesezeichen": <input type="text" name="bookmark" class="date-values" /></p>
         <p><input type="submit" class="btn btn-primary" onclick="prepareCookie()" value="Download .ics"/></p>
     </form>
@@ -68,4 +75,3 @@
     </div>
 </body>
 </html>
-
