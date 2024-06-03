@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>100 Tage M2 iCal Tool</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index, nofollow"/>
+    <link rel="icon" href="favicon.ico">
+    <meta name="description" content="Einfach deinen 100 Tage Lernplan erstellen und ihn dir in deinen Kalender eintragen lassen. Du kannst ihn auch regelmäßig bearbeiten und die Update-Funktion nutzen, um ihn aktuell zu halten.">
+    <meta name="keywords" content="Staatsexamen, Medizin, M2, Examen, 100 Tage, 100, Tage, Planer, Lernplaner, Lernplan, Generator, Rechner, Lerntage, Stex, Ärztliche Prüfung, 2. Abschnitt, iCal, Tool, ics, iCalendar, Calendar">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+
+    <link href="styles.css" rel="stylesheet">
+    <link href="multi2.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="multidatespicker.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div style="margin:20px; width: 1300px; padding-bottom: 2em;">
+    <h2>100 Tage Lernplan iCal Generator</h2>
+    <p>An welchem Examen möchtest du teilnehmen?</p>
+    <select class="form-control" style="width:297px;" onchange="change(this)" id="examen">
+        <option value="2024-10-08">- auswählen -</option>
+        <option value="2024-04-09">Frühjahr 2024</option>
+        <option value="2024-10-08">Herbst 2024</option>
+        <option value="2025-04-08">Frühjahr 2025</option>
+        <option value="2024-10-08">Herbst 2025</option>
+      </select>
+      <p></p>
+      <p><span id="numExamen" style="color:#3C3C3C; font-style:italic;"> </span></p>
+      <p></p>
+    <p>Bitte rechts die Tage auswählen und ggf. Urlaub oder besondere Termine (Klausuren!) eintragen.<br>
+    Lerntage einfach so belassen, um sie automatisch zu nummerieren. <br>
+    Möchtest du von der Reihenfolge abweichen und zB Pharma vorziehen, dann bitte "Lerntag 71", "Lerntag 72", etc. in das entsprechende Feld eintragen. Die nicht explizit genannten Tage werden außenherum automatisch fortlaufend nummeriert. d.h. beginnst du mit Pharma, dann kommt nach Lerntag 75 automatisch Lerntag 1.</p>
+    <p>Im Prinzip kannst du diese Webseite auch mehrfach (während der Lernphase) besuchen, um Lerntage zu verschieben, Urlaub einzutragen, etc.<br>
+    Dazu speichert diese Seite einen kleinen Cookie auf deiner Festplatte.* Wenn du aber deine Cookies gelöscht hast oder an einem anderen Computer bist, dann achte zumindest darauf, dass das "Lesezeichen" das gleiche ist. Hier kannst du alles eintragen, wie zB deinen Namen oder deinen Lieblings-SecondMessenger. Das "Lesezeichen" stellt sicher, dass du nachher in deinem Kalender auch ein echtes Update bekommst und nicht lauter doppelte Termine.</p>
+    <p><span style="color: #7f7f7f;">*FYI zu dem Cookie Part stimmst du in dem Moment zu, wo du auf "Download .ics" klickst ;). Wenn du das nicht möchtest, dann klick besser nicht auf den Button. Du kannst dir deinen Lernplaner auch mit Buntstiften malen. :P</span></p>
+    <p></p>
+    <div class="vc-container vc-blue" style="float: right;">
+        <div class="vc-pane-container">
+            <div class="vc-arrows-container title-center">
+                <div role="button" onclick="previous()" class="vc-arrow is-left">
+                    <svg width="26px" height="26px" viewBox="0 -1 16 34" class="vc-svg-icon"><path d="M11.196 10c0 0.143-0.071 0.304-0.179 0.411l-7.018 7.018 7.018 7.018c0.107 0.107 0.179 0.268 0.179 0.411s-0.071 0.304-0.179 0.411l-0.893 0.893c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-8.321-8.321c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l8.321-8.321c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l0.893 0.893c0.107 0.107 0.179 0.25 0.179 0.411z"></path></svg>
+                </div>
+                <div role="button" onclick="next()" class="vc-arrow is-right">
+                    <svg width="26px" height="26px" viewBox="-5 -1 16 34" class="vc-svg-icon"><path d="M10.625 17.429c0 0.143-0.071 0.304-0.179 0.411l-8.321 8.321c-0.107 0.107-0.268 0.179-0.411 0.179s-0.304-0.071-0.411-0.179l-0.893-0.893c-0.107-0.107-0.179-0.25-0.179-0.411 0-0.143 0.071-0.304 0.179-0.411l7.018-7.018-7.018-7.018c-0.107-0.107-0.179-0.268-0.179-0.411s0.071-0.304 0.179-0.411l0.893-0.893c0.107-0.107 0.268-0.179 0.411-0.179s0.304 0.071 0.411 0.179l8.321 8.321c0.107 0.107 0.179 0.268 0.179 0.411z"></path></svg>
+                </div>
+            </div>
+            <div class="vc-pane-layout" style="grid-template-columns: repeat(3, 1fr);" id="div-pane"></div>
+        </div>
+    </div>
+    <span id="numSelected"> </span>
+    <div style="float: left; padding-top: 20px;">
+        <span id="numSelected"> </span>
+    <form action="ics.php" method="post" id="form1">
+        <p style="margin-right:10px;">Dein "Lesezeichen": <input type="text" name="bookmark" class="date-values" /></p>
+        <p><input type="submit" class="btn btn-primary" onclick="prepareCookie()" value="Download .ics"/></p>
+    </form>
+    </div>
+    </div>
+</body>
+</html>
+
